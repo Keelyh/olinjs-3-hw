@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	h1 Enter in a New Ingredient
+
+	form(method = "POST", action = "/ingredient/create")
+		|	New Ingredient Name:
+		input(type = "text", name = "ingredient")
+		|	Cost:
+		input(type = "text", name = "cost")
+		input(type = "Submit", value = "Submit")

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	h1 Create Your Own Order
+
+	form(id = "newOrder")
+		|	Name:
+		input(type= "text", name = "name")
+		br
+		div(id="allingredients")
+			each ing in ingredients
+				input(type="checkbox", name="ingredients", value= ing._id)
+				| #{ing.name} $#{ing.cost}
+				br
+		input(type = "Submit", value = "Submit")
+
+	script
+		$('#newOrder').on('submit', function () {
+			$.post("/order/save", $('#newOrder').serialize());
+			$('body').append('<p> Order Saved</p>');
+			return false;
+		})

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+	h1 All Pending Orders
+	ul(id="orderlist")
+		each order in orders
+			li(class=order._id)
+				div
+				| #{order.customerName}: 
+				br
+				each ing in order.ingredients
+					| #{ing.name}
+					br
+				br
+				button(class="completed", id=order._id)
+					| Completed
+				br
+				br
+
+	script
+		$('.completed').click(function () {
+			$.post("/orders/remove", {id: $(this).prop('id')});
+			$('.' + $(this).prop('id')).hide();
+		return false;
+		})
